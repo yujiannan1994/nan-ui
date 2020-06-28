@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import classnames from "classnames";
+import React, { useState } from 'react';
+import classNames from 'classnames';
 
-export type AlertType = "success" | "default" | "danger" | "warning";
+export type AlertType = 'success' | 'default' | 'danger' | 'warning';
 
-interface BaseAlertProps {
+export interface BaseAlertProps {
   type?: AlertType;
   closable?: boolean;
   onClose?: () => void;
@@ -20,12 +20,13 @@ const Alert: React.FC<BaseAlertProps> = (props) => {
     title,
     description
   } = props;
-  // btn, btn-lg, btn-primary
-  const classes = classnames("nan-alert", {
+  const classes = classNames('nan-alert', {
     [`nan-alert-${type}`]: type,
-    closable: closable,
     hide: hide
   });
+  const titleClass = classNames('nan-alert-title', {
+    'bold-title': description
+  })
   const handleClose = (e: React.MouseEvent) => {
     if (onClose) {
       onClose()
@@ -34,16 +35,16 @@ const Alert: React.FC<BaseAlertProps> = (props) => {
   }
   return (
     <div className={classes}>
-      {title && <h6 className="bold-title">{title}</h6>}
-      <p className="nan-alert-desc">{description}</p>
-      {closable && <span className="nan-alert-close" onClick={handleClose}>×</span>}
+      {title && <h6 className={titleClass}>{title}</h6>}
+      <p className='nan-alert-desc'>{description}</p>
+      {closable && <span className='nan-alert-close' onClick={handleClose}>×</span>}
     </div>
   )
 };
 
 Alert.defaultProps = {
-  closable: false,
-  type: "default"
+  closable: true,
+  type: 'default'
 }
 
 export default Alert

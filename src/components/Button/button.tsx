@@ -1,16 +1,16 @@
-import React from "react";
-import classnames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
 export enum ButtonSize {
-  Large = "lg",
-  Small = "sm",
+  Large = 'lg',
+  Small = 'sm',
 }
 
 export enum ButtonType {
-  Primery = "primary",
-  Default = "default",
-  Danger = "danger",
-  Link = "link",
+  Primery = 'primary',
+  Default = 'default',
+  Danger = 'danger',
+  Link = 'link',
 }
 
 interface BaseButtonProps {
@@ -35,7 +35,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     ...restProps
   } = props;
   // btn, btn-lg, btn-primary
-  const classes = classnames("btn", className, {
+  const classes = classNames('btn', className, {
     [`btn-${btnType}`]: btnType,
     [`btn-${size}`]: size,
     disabled: (btnType === ButtonType.Link) && disabled,
