@@ -3,6 +3,7 @@ import React from 'react';
 // import Alert from './components/Alert/alert'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
+import SubMenu from './components/Menu/subMenu'
 
 function App() {
   const onClose = () => {
@@ -21,14 +22,22 @@ function App() {
         <Alert title="Error Text" type="danger" closable />
         <Alert title="success Text" description="success Text success Text" type="success" />
         <Alert title="warning Text" description="warning Text warning Text" type="warning" closable /> */}
-        <Menu defaultIndex={0} mode="vertical" onSelect={(index) => {alert(index)}}>
-          <MenuItem index={0}>
+        <Menu defaultIndex="0" onSelect={(index) => {alert(index)}} mode="vertical" defaultOpenSubMenus={['2']}>
+          <MenuItem>
             cool link
           </MenuItem>
-          <MenuItem index={1} disabled>
+          <MenuItem disabled>
             cool link 2
           </MenuItem>
-          <MenuItem index={2}>
+          <SubMenu title="dropdown">
+            <MenuItem>
+              dropdown 1
+            </MenuItem>
+            <MenuItem>
+              dropdown 2
+            </MenuItem>
+          </SubMenu>
+          <MenuItem>
             cool link 3
           </MenuItem>
         </Menu>
