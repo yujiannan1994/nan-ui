@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import Button, { ButtonType, ButtonSize } from './components/Button/button'
 // import Alert from './components/Alert/alert'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
-
-function App() {
-  const onClose = () => {
-    alert('close')
-  }
+import Icon from "./components/Icon/icon"
+import Transition from './components/Transition/transition'
+import Button from './components/Button/button'
+const App: React.FC = () => {
+  const [show, setShow] = useState(false)
+  // const onClose = () => {
+  //   alert('close')
+  // }
   return (
     <div className="App">
       <header className="App-header">
+        <Icon icon="coffee" theme="primary" size="10x"/>
         {/* <Button className="custom" autoFocus onClick={(e) => { e.preventDefault(); alert(123)}}> Hello </Button>
         <Button disabled> Disabled Button </Button>
         <Button btnType={ButtonType.Primery} size={ButtonSize.Large}> Large Primery </Button>
@@ -22,7 +26,7 @@ function App() {
         <Alert title="Error Text" type="danger" closable />
         <Alert title="success Text" description="success Text success Text" type="success" />
         <Alert title="warning Text" description="warning Text warning Text" type="warning" closable /> */}
-        <Menu defaultIndex="0" onSelect={(index) => {alert(index)}} mode="vertical" defaultOpenSubMenus={['2']}>
+        <Menu defaultIndex="0" onSelect={(index) => {alert(index)}} defaultOpenSubMenus={['2']}>
           <MenuItem>
             cool link
           </MenuItem>
@@ -41,17 +45,41 @@ function App() {
             cool link 3
           </MenuItem>
         </Menu>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Button size="lg" onClick={() => { setShow(!show) }}> Toggle </Button>
+        <Transition
+          in={show}
+          timeout={300}
+          animation="zoom-in-left"
         >
-          Learn React
-        </a>
+          <div>
+            <p>
+              Edit <code>src/App.tsx</code> and save to reload.
+            </p>
+            <p>
+              Edit <code>src/App.tsx</code> and save to reload.
+            </p>
+            <p>
+              Edit <code>src/App.tsx</code> and save to reload.
+            </p>
+            <p>
+              Edit <code>src/App.tsx</code> and save to reload.
+            </p>
+            <p>
+              Edit <code>src/App.tsx</code> and save to reload.
+            </p>
+            <p>
+              Edit <code>src/App.tsx</code> and save to reload.
+            </p>
+          </div>
+        </Transition>
+        <Transition
+          in={show}
+          timeout={300}
+          animation="zoom-in-left"
+          wrapper
+        >
+          <Button btnType="primary" size="lg">A Large Button</Button>
+        </Transition>
       </header>
     </div>
   );
